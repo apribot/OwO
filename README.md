@@ -1,2 +1,2 @@
-# Awwww!~ *notices your stab at home automation* 
+# Awwww!~ \*notices your stab at home automation\* 
 # OwO whats this..?
