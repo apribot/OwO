@@ -14,6 +14,7 @@ apt-get install tshark
 - [ ] get/set MD alarm attribs
 - [ ] get/set MD alarm on/off
 - [ ] some kinda nc -l to get ipcam alarmserver notifications
+- [x] pan controls
 
 ### flatfile 'db'
 - [x] kinda
@@ -24,10 +25,17 @@ apt-get install tshark
 - [x] send on/off commands
 
 ### geofencing of cellphones via tshark
-- [x] yep
+- [x] kinda
+- [ ] yes
 
 ### notification
 - [ ] email
 - [ ] sms(?)
 - [ ] TTS
 - [ ] LIFX red strobe
+
+### control via android's "ok google"
+- [ ] kinda
+
+### central control and monitoring
+- [ ] kinda
