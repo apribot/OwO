@@ -32,6 +32,10 @@ apt-get install tshark
 - [x] kinda
 - [ ] yes
 
+### geofencing responses
+- [ ] kinda
+- [ ] yes
+
 ### notification
 - [ ] email
 - [ ] sms(?)
