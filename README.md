@@ -16,11 +16,15 @@ apt-get install tshark
 - [ ] some kinda nc -l to get ipcam alarmserver notifications
 - [x] pan controls
 
+### networked motion detector
+- [ ] kinda
+- [ ] yes
+
 ### flatfile 'db'
 - [x] kinda
 - [ ] yes
 
-### wiwo switch
+### wiwo switch(s)
 - [ ] get status
 - [x] send on/off commands
 
@@ -36,6 +40,8 @@ apt-get install tshark
 
 ### control via android's "ok google"
 - [ ] kinda
+- [ ] yes
 
 ### central control and monitoring
 - [ ] kinda
+- [ ] yes
