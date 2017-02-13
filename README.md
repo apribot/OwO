@@ -16,12 +16,17 @@ apt-get install tshark
 - [ ] some kinda nc -l to get ipcam alarmserver notifications
 - [x] pan controls
 
-### networked motion detector
+### networked motion detection
 - [ ] kinda
 - [ ] yes
 
-### flatfile 'db'
+### flatfile 'db' for logging
 - [x] kinda
+- [ ] yes
+
+### outgrow flatfile and move to pgsql
+- [ ] realize the shortcomings of flatfile db
+- [ ] accept the eventuality of a real RDMS
 - [ ] yes
 
 ### wiwo switch(s)
@@ -42,10 +47,17 @@ apt-get install tshark
 - [ ] TTS
 - [ ] LIFX red strobe
 
-### control via android's "ok google"
+### mobile control via android's "ok google"
 - [ ] kinda
 - [ ] yes
 
-### central control and monitoring
+### central control and monitoring software
 - [ ] kinda
 - [ ] yes
+
+### dedicated control server
+- [ ] raspi?
+- [ ] realize the shortcomings of raspi
+
+### scope creep
+- [ ] ...
