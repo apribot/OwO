@@ -1,0 +1,14 @@
+http://10.0.0.244/web/cgi-bin/hi3510/param.cgi?cmd=setalarmserverattr&-as_server=10.0.0.178&-as_port=1234&-as_username=asdf&-as_password=1234
+http://10.0.0.244/web/cgi-bin/hi3510/param.cgi?cmd=getalarmserverattr
+
+
+
+http://10.0.0.244/web/cgi-bin/hi3510/param.cgi?cmd=getaudioalarmattr
+aa_enable: 0 (disabled), 1 (enabled)
+aa_value：Detection Sensitivity [0-100]
+aa_time: Required Sound Duration [0-10]s
+Return	Success, Error
+Remark	See Param.cgi?cmd=getaudioalarmattr and Param.cgi?cmd=setaudioalarmattr
+Example	http://admin:instar@192.168.178.88/cgi-bin/hi3510/param.cgi?cmd=getaudioalarmattr
+http://admin:instar@192.168.178.88/cgi-bin/hi3510/param.cgi?cmd=setaudioalarmattr&-aa_enable=1&-aa_value=50&-aa_time=0
+
