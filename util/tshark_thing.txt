@@ -1,0 +1,1 @@
+ sudo tshark -i wlan1 -f 'broadcast' -T fields -e frame.time_epoch -e wlan.sa -e radiotap.dbm_antsignal
