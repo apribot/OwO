@@ -1,42 +1,36 @@
 <?php
-class MyDB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('fence.db');
-    }
-}
-
-$db = new MyDB();
-
-$db->exec("CREATE TABLE IF NOT EXISTS fencelog (device text, createdat timestamp)");
-
-unset($db);
-//$result = $db->query('SELECT * FROM fencelog order by createdat desc limit 1');
-//var_dump($result->fetcharray());
-
 
 $devices = array(
-	'me'=>'78:F8:82:D1:44:DA',
+	'me'   =>'78:F8:82:D1:44:DA',
+  'orv1' =>'AC:CF:23:99:4A:84',
+  'ipcam'=>'E8:AB:FA:68:9B:56',
+  'wife' =>'AC:FD:EC:0D:83:6E',
+  'mb'   =>'2C:F0:A2:12:12:E7'
 	);
 
-$wirelessthing = 'wlp3s0';
+$data = file_get_contents('http://10.0.0.1');
 
-$cmd = 'tshark -i '.$wirelessthing.' -f "wlan src host '.$devices['me'].'" -l -T fields -e _ws.col.Info';
+preg_match_all('/host-name\'>([^<]*)<\/td>|mac-address\'>([^<]*)<\/td>/', $data, $res);
 
-$descriptorspec = array(
-   0 => array("pipe", "r"),   // stdin is a pipe that the child will read from
-   1 => array("pipe", "w"),   // stdout is a pipe that the child will write to
-   2 => array("pipe", "w")    // stderr is a pipe that the child will write to
-);
+$nodes = array();
 
-$process = proc_open($cmd, $descriptorspec, $pipes, realpath('./'), array());
-
-if (is_resource($process)) {
-    while ($s = fgets($pipes[1])) {
-    	$db = new MyDB();
-    	$db->exec("INSERT INTO fencelog VALUES ('me',datetime('now'))");
-    	echo "Ping!\n";
-    	unset($db);
-    }
+for ($i=0; $i < count($res[2]); $i+=2) { 
+    $nodes[$res[2][$i+1]] = $res[1][$i];
 }
+
+$out = array();
+foreach($devices as $who => $mac) {
+  if(isset($nodes[$mac])) {
+    $out[$who] = array(
+      'active'=>true, 
+      'hostname'=>$nodes[$mac], 
+      'mac'=>$mac);
+  } else {
+    $out[$who] = array(
+      'active'=>false, 
+      'hostname'=>null, 
+      'mac'=>$mac);
+  }
+}
+
+echo json_encode($out);
