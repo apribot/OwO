@@ -56,7 +56,7 @@ apt-get install tshark
 - [ ] yes
 
 ### dedicated control server
-- [ ] raspi?
+- [x] raspi?
 - [ ] realize the shortcomings of raspi
 
 ### scope creep
