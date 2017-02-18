@@ -86,21 +86,44 @@ class Orvibo {
   }
 }
 
+
+
 $commands = array('on', 'off');
 
+if(!isset($argv[2])) {
+  $device = '1';
+} else {
+  $device = $argv[2];
+}
 
-if(count($argv) == 2 && in_array($argv[1], $commands) ) { 
+if(in_array($argv[1], $commands) ) { 
   $orv = new Orvibo('10.0.0.82', 10000, array(0xAC,0xCF,0x23,0x99,0x4A,0x84));
-  switch ($argv[1]) {
-    case 'on':
-      $orv->on();
-      break;
-    case 'off':
-      $orv->off();
-      break;
-    default:
-      # code...
-      break;
+  $orv2 = new Orvibo('10.0.0.236', 10000, array(0x60,0x01,0x94,0x0A,0xA8,0x2D));
+
+  if($device == '1') {
+    switch ($argv[1]) {
+      case 'on':
+        $orv->on();
+        break;
+      case 'off':
+        $orv->off();
+        break;
+      default:
+        # code...
+        break;
+    }
+  } else {
+    switch ($argv[1]) {
+      case 'on':
+        $orv2->on();
+        break;
+      case 'off':
+        $orv2->off();
+        break;
+      default:
+        # code...
+        break;
+    }
   }
 } else {
   echo "use like:\n  php orvibo.php {on/off}\n\n";
