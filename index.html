@@ -53,7 +53,8 @@ table {
             
             
             body {
-                background-color:#444
+                background-color:#222;
+                color:#0f0;
             }
             #floorplan {
                 width:600px;
@@ -239,14 +240,56 @@ table {
             }
             pre {
                 font-family:"Courier New", Courier, monospace;
+                font-size:10px;
+                font-weight: bold;
+                color:#0a0;
+                text-shadow:2px 2px 2px rgba(0,150,0,0.8);
             }
 
         </style>
     </head>
     <body>
+    <br>
+<svg width="500px" height="50px" viewBox="0 0 500 50" xml:space="preserve">
+    <text x="12" y="12" stroke="none" fill="#0f0" font-family="Courier" font-size="16">
+    💡 ON OFF
+  </text>
+    <polyline  stroke="#0c0" fill="none"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="
+    12,18 210,18 260,40 310,40"/>
+  </svg> 
 
-<pre> 
- _________________________________________________________________    ______________
+
+<br><br>
+
+ 
+
+        <div class="content">
+
+<pre> <div class="action green" _target="light" _command="on">I</div>
+                    <div class="action red" _target="light" _command="off">O</div>
+
+
+            <!--
+            <div id="floorplan">
+                <div class="room mbed b1">          
+                    <div class="action green" _target="light" _command="on">I</div>
+                    <div class="action red" _target="light" _command="off">O</div>
+                </div>
+                <div class="room lanai b5"></div>
+                <div class="room kitchen b8"></div>
+                <div class="room mhall b3"></div>
+                <div class="room garage b6"></div>
+                <div class="room livingroom b7"></div>
+                <div class="room kbathroom b2"></div>
+                <div class="room sage b1"></div>
+                <div class="room wren b1"></div>
+                <div class="room mbathroom b2"></div>
+                <div class="room mcloset"></div>
+                <div class="room front b5"></div>
+                <div class="room khall b3"></div>
+            </div>-->
+        </div>
+<pre> _________________________________________________________________    ______________
 |                                      |      |                                     |
 |                                      |      |                                     |
 |                                      |      |                                     |
@@ -281,26 +324,7 @@ table {
 </pre>
 
 
-        <div class="content">
-            <div id="floorplan">
-                <div class="room mbed b1">          
-                    <div class="action green" _target="light" _command="on">I</div>
-                    <div class="action red" _target="light" _command="off">O</div>
-                </div>
-                <div class="room lanai b5"></div>
-                <div class="room kitchen b8"></div>
-                <div class="room mhall b3"></div>
-                <div class="room garage b6"></div>
-                <div class="room livingroom b7"></div>
-                <div class="room kbathroom b2"></div>
-                <div class="room sage b1"></div>
-                <div class="room wren b1"></div>
-                <div class="room mbathroom b2"></div>
-                <div class="room mcloset"></div>
-                <div class="room front b5"></div>
-                <div class="room khall b3"></div>
-            </div>
-        </div>
+        
   <pre id="status"></pre>
 </body>
 <script>
