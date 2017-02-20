@@ -25,7 +25,7 @@ apt-get install tshark
 - [ ] yes
 
 ### outgrow flatfile and move to pgsql
-- [ ] realize the shortcomings of flatfile db
+- [x] realize the shortcomings of flatfile db
 - [ ] accept the eventuality of a real RDMS
 - [ ] yes
 
@@ -33,9 +33,17 @@ apt-get install tshark
 - [ ] get status
 - [x] send on/off commands
 
+### tplink switch(s)
+- [x] get status
+- [x] send on/off commands
+
 ### geofencing of cellphones via tshark
 - [x] kinda
 - [ ] yes
+- [x] nah, changed my mind on this one
+
+### dirty geofencing using curl and regex of router infopage?
+- [x] hell yes
 
 ### geofencing responses
 - [ ] kinda
@@ -50,14 +58,16 @@ apt-get install tshark
 ### mobile control via android's "ok google"
 - [ ] kinda
 - [ ] yes
+- [x] no, voice control sucks
 
 ### central control and monitoring software
-- [ ] kinda
+- [x] kinda
 - [ ] yes
 
 ### dedicated control server
 - [x] raspi?
 - [ ] realize the shortcomings of raspi
+- [x] nah, raspi zero is plenty... and my my how cheap
 
 ### scope creep
 - [ ] ...
