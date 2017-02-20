@@ -3,8 +3,22 @@
 $utilbase = 'util/';
 
 $routes =  array(
-        'light'=>array(
-                'file'=>'orvibo.php', 
+        'bed'=>array(
+                'file'=>'orvibo.php bedroom', 
+                'action'=>array(
+                        'on'=>'on',
+                        'off'=>'off'
+                )
+        ),
+        'back'=>array(
+                'file'=>'orvibo.php back', 
+                'action'=>array(
+                        'on'=>'on',
+                        'off'=>'off'
+                )
+        ),
+        'front'=>array(
+                'file'=>'orvibo.php front', 
                 'action'=>array(
                         'on'=>'on',
                         'off'=>'off'
@@ -19,6 +33,7 @@ if(!isset($_POST['target']) || !isset($_POST['command']) ) {
 
 $target = $_POST['target'];
 $action = $_POST['command'];
+
 
 if(!isset($routes[$target]) || !isset($routes[$target]['action'][$action]) ) {
 	echo "invalid action or target";

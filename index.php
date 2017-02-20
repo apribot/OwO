@@ -1,306 +1,211 @@
+<?php
+/*
+$fp = "
+[  I  ] [  O  ]                                                        
+---------------,                                        [  I  ] [  O  ]
+                \                                       ,--------------
+        _________\_________________________   _______  /               
+       |         (+)       |   |                     |/                
+       |                   |   |                     /                 
+       |____               |   |                    /|                 
+       |                   |   |                  (+)|                 
+       |____|  ________   _|   |_    .._________   __|                 
+       |         |              _      |             |                 
+       |_________    __________| |     |             |                 
+       |_________|  |____________|     |             |                 
+       |                 |             |__   ________|                 
+                         |              _    _       |                 
+       |                 |             |_   | |      |                 
+       |                 |             | |  | |      |                 
+       |                 |             | |  | |      |                 
+       |                 |     (+)     | |  | |      |                 
+       |                 |  _____\_____|_|__|_|______|                 
+       |                 |    :   \                     [  I  ] [  O  ]
+       |                 |    :    '-----------------------------------
+       |__.............__|....:                                        ";
+
+
+$cdef = array(
+    '.' => array('start'=>'<span class="gray">', 'end'=>'</span>'),
+    ':' => array('start'=>'<span class="gray">', 'end'=>'</span>'),
+    '\\'=> array('start'=>'<span class="blue">', 'end'=>'</span>'),
+    '/' => array('start'=>'<span class="blue">', 'end'=>'</span>'),
+    '-' => array('start'=>'<span class="blue">', 'end'=>'</span>'),
+    ',' => array('start'=>'<span class="blue">', 'end'=>'</span>'),
+    '\''=> array('start'=>'<span class="blue">', 'end'=>'</span>')
+    );
+
+$strdev = array(
+    '[  I  ]' => array('start'=>'<span class="onbtn action">',  'end'=>'</span>'),
+    '[  O  ]' => array('start'=>'<span class="offbtn action">', 'end'=>'</span>'),
+    '(+)'     => array('start'=>'<span class="blue">',   'end'=>'</span>')
+    );
+
+
+$chars = str_split($fp);
+
+foreach($chars as &$char) {
+    if( isset($cdef[$char]) ) {
+        $char = $cdef[$char]['start'] . $char . $cdef[$char]['end'];
+    }
+}
+
+$outp = implode('', $chars);
+
+foreach($strdev as $find => $replace) {
+    $outp = str_replace($find, $replace['start'] . $find . $replace['end'] , $outp);
+}
+*/
+
+?>
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=500, initial-scale=1">
         <style>
             /* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+               v2.0 | 20110126
+               License: none (public domain)
+            */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-            
-            
+            html, body, div, span, applet, object, iframe,
+            h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+            a, abbr, acronym, address, big, cite, code,
+            del, dfn, em, img, ins, kbd, q, s, samp,
+            small, strike, strong, sub, sup, tt, var,
+            b, u, i, center,
+            dl, dt, dd, ol, ul, li,
+            fieldset, form, label, legend,
+            table, caption, tbody, tfoot, thead, tr, th, td,
+            article, aside, canvas, details, embed, 
+            figure, figcaption, footer, header, hgroup, 
+            menu, nav, output, ruby, section, summary,
+            time, mark, audio, video {
+            	margin: 0;
+            	padding: 0;
+            	border: 0;
+            	font-size: 100%;
+            	font: inherit;
+            	vertical-align: baseline;
+            }
+            /* HTML5 display-role reset for older browsers */
+            article, aside, details, figcaption, figure, 
+            footer, header, hgroup, menu, nav, section {
+            	display: block;
+            }
             body {
-                background-color:#444
+            	line-height: 1;
             }
-            #floorplan {
-                width:600px;
-                height:480px;
-                position:relative;
-                display:inline-block;
+            ol, ul {
+            	list-style: none;
             }
-            .room {
-                position:absolute;
-                border:3px solid #fff;
+            blockquote, q {
+            	quotes: none;
             }
-            
-            .mbed {
-                width:280px;
-                height:129px;
-                top:0px;
-                left:0px;
-                background-color:#999;
+            blockquote:before, blockquote:after,
+            q:before, q:after {
+            	content: '';
+            	content: none;
             }
-            .kitchen {
-                left:280px;
-                top:0px;
-                height:129px;
-                width:70px;
-                background-color:#999;
+            table {
+            	border-collapse: collapse;
+            	border-spacing: 0;
             }
-            .lanai {
-                top:0px;
-                left:350px;
-                width:240px;
-                height: 127px;
-                background-color:#999;
+                                    
+            body {
+                background-color:#222;
+                color:#0f0;
             }
-            .mhall {
-                height:77px;
-                width:200px;
-                top:130px;
-                left:150px;
-                background-color:#999;
-            }
-            
-            .garage {
-                width:240px;
-                height:260px;
-                top:210px;
-                background-color:#999;
-            }
-            
-            .wren {
-                height:170px;
-                width:90px;
-                top:240px;
-                left:500px;
-                background-color:#999;
-            }
-            .front {
-                width:60px;
-                height:57px;
-                top:413px;
-                left:243px;
-                background-color:#999;
-            }
-            
-            .livingroom {
-                width: 197px;
-                height: 280px;
-                left:240px;
-                top:130px;
-                z-index:-100;
-                background-color:#999;
-            }
-            
-            .mbathroom {
-                width:150px;
-                height:77px;
-                top:130px;
-                left:0px;
-                background-color:#999;
-            }
-            
-            .kbathroom {
-                width:57px;
-                height: 130px;
-                left: 440px;
-                top: 280px;
-                background-color:#999;
-            }
-            
-            .sage {
-                top:130px;
-                left:440px;
-                height:107px;
-                width:150px;
-                background-color:#999;
-            }
-            
-            .mcloset {
-                width:80px;
-                height:57px;
-                top:70px;
-                left: 0px;
-                z-index:99;
-                background-color:#999;
-            }
-            
-            .khall {
-                top:240px;
-                left:440px;
-                height:40px;
-                width:57px;
-                background-color:#999;
-            }
-            
-            
-            .b1 {
-                background-color:#7e2553;  
-            }
-            .b2 {
-                background-color:#ff004d;
-            }
-            
-            .b3 {
-                background-color:#ffa300;
-            }
-            
-            .b4 {
-                background-color:#00ef36;
-            }
-            
-            .b5 {
-                background-color:#29adff;
-            }
-            
-            .b6 {
-                background-color:#83769c;
-            }
-            
-            .b7 {
-                background-color:#ff77ab;
-            }
-            
-            .b8 {
-                background-color:#fca;
-            }
-            
-            .content {
-                width: 100%;
-                text-align: center;
-            }
-
-
                     
             .action {
-                width:60px;
-                height:60px;
-                display:inline-block;
-                line-height:60px;
-                vertical-align:middle;  
-                font-weight:bold;
-                font-size:35px;
+               
             }
+
             .action:hover {
                 cursor: pointer;
             }
 
-            .red {
-                background-color:rgba(255,0,0,0.3);
-                color:#f00;
+            pre {
+                font-family:"Courier New", Courier, monospace;
+                font-size:16px;
+                font-weight: bold;
+                color:#0a0;
+                text-shadow:2px 2px 2px rgba(0,150,0,0.8);
             }
-            .red:hover {
+            
+            .line {
+                margin-top:30px;
+            }
+
+            .fp {
+                width:550px;
+            }
+
+            .onbtn {
+                color:#fff;
+                background-color:#090;
+            }
+
+            .offbtn {
+                color:#fff;
+                background-color:#900;
+            }
+
+            .offbtn:hover {
                 background-color:rgba(255,0,0,1);   
                 color:#fff;
             }
 
-            .green {
-                background-color:rgba(0,255,0,0.3);
-                color:#0f0;
-            }
-
-               .green:hover {
+            .onbtn:hover {
                 background-color:rgba(0,255,0,1);
                 color:#fff;
             }
-            pre {
-                font-family:"Courier New", Courier, monospace;
+
+            .blue {
+                color:#bcd;
             }
+
+            .gray {
+                color:#999;
+            }
+
 
         </style>
     </head>
     <body>
+<pre>
 
-<pre> 
- _________________________________________________________________    ______________
-|                                      |      |                                     |
-|                                      |      |                                     |
-|                                      |      |                                     |
-|                                      |      |                                     |
-|__________                            |      |                                     |
-|         |                            |      |                                     |
-|                                      |      |                                     |
-|_________|_    __________________    _|      |___      ....._____________     _____|
-|                   |                                        |                      |
-|                                              ___           |                      |
-|___________________       ___________________|   |          |                      |
-|                   |     |                       |          |                      |
-|___________________|_   _|_______________________|          |                      |
-|                                  |                         |                      |
-|                                  |                         |___    _______________|
-                                   |                         |        |_____________|
-                                   |                                                |
-|                                  |                         |___   __|             |
-|                                  |                         |      | |             |
-|                                  |                         |__    | |             |
-|                                  |                         |  |   | |             |
-|                                  |                         |  |   | |             |
-|                                  |                         |  |   | |             |
-|                                  |                         |  |   | |             |
-|                                  |                         |  |   | |             |
-|                                  |                         |  |   | |             |
-|                                  |_    ____________________|__|___|_|_____________|
-|                                  |        : 
-|                                  |        : 
-|                                  |        : 
-|__..............................__|........:
-</pre>
+<span class="onbtn action" _target="bed" _command="on">[  I  ]</span> <span class="offbtn action" _target="bed" _command="off">[  O  ]</span>                                                        
+<span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">,</span>                                        <span class="onbtn action" _target="back" _command="on">[  I  ]</span> <span class="offbtn action" _target="back" _command="off">[  O  ]</span>
+                <span class="blue">\</span>                                       <span class="blue">,</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span>
+        _________<span class="blue">\</span>_________________________   _______  <span class="blue">/</span>               
+       |         <span class="blue">(+)</span>       |   |                     |<span class="blue">/</span>                
+       |                   |   |                     <span class="blue">/</span>                 
+       |____               |   |                    <span class="blue">/</span>|                 
+       |                   |   |                  <span class="blue">(+)</span>|                 
+       |____|  ________   _|   |_    <span class="gray">.</span><span class="gray">.</span>_________   __|                 
+       |         |              _      |             |                 
+       |_________    __________| |     |             |                 
+       |_________|  |____________|     |             |                 
+       |                 |             |__   ________|                 
+                         |              _    _       |                 
+       |                 |             |_   | |      |                 
+       |                 |             | |  | |      |                 
+       |                 |             | |  | |      |                 
+       |                 |     <span class="blue">(+)</span>     | |  | |      |                 
+       |                 |  _____<span class="blue">\</span>_____|_|__|_|______|                 
+       |                 |    <span class="gray">:</span>   <span class="blue">\</span>                     <span class="onbtn action" _target="front" _command="on">[  I  ]</span> <span class="offbtn action" _target="front" _command="off">[  O  ]</span>
+       |                 |    <span class="gray">:</span>    <span class="blue">'</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span>
+       |__<span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span>__|<span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">:</span>                                        
 
-
-        <div class="content">
-            <div id="floorplan">
-                <div class="room mbed b1">          
-                    <div class="action green" _target="light" _command="on">I</div>
-                    <div class="action red" _target="light" _command="off">O</div>
-                </div>
-                <div class="room lanai b5"></div>
-                <div class="room kitchen b8"></div>
-                <div class="room mhall b3"></div>
-                <div class="room garage b6"></div>
-                <div class="room livingroom b7"></div>
-                <div class="room kbathroom b2"></div>
-                <div class="room sage b1"></div>
-                <div class="room wren b1"></div>
-                <div class="room mbathroom b2"></div>
-                <div class="room mcloset"></div>
-                <div class="room front b5"></div>
-                <div class="room khall b3"></div>
-            </div>
-        </div>
+</pre>        
   <pre id="status"></pre>
 </body>
 <script>

@@ -86,22 +86,129 @@ class Orvibo {
   }
 }
 
+// shoutout to https://github.com/softScheck/tplink-smartplug/blob/master/tplink-smartplug.py
+class HS100 {
+  public $commands = array(
+    'info'     => '{"system":{"get_sysinfo":{}}}',
+    'on'       => '{"system":{"set_relay_state":{"state":1}}}',
+    'off'      => '{"system":{"set_relay_state":{"state":0}}}',
+    'cloudinfo'=> '{"cnCloud":{"get_info":{}}}',
+    'wlanscan' => '{"netif":{"get_scaninfo":{"refresh":0}}}',
+    'time'     => '{"time":{"get_time":{}}}',
+    'schedule' => '{"schedule":{"get_rules":{}}}',
+    'countdown'=> '{"count_down":{"get_rules":{}}}',
+    'antitheft'=> '{"anti_theft":{"get_rules":{}}}',
+    'reboot'   => '{"system":{"reboot":{"delay":1}}}',
+    'reset'    => '{"system":{"reset":{"delay":1}}}'
+  );
+
+
+  public $devices = array(
+    'back'=>'10.0.0.6',
+    'front'=>'10.0.0.8'
+  );
+
+  public $deviceIP;
+
+  public function __construct($device) {
+    if(isset($this->devices[$device])) {
+      $this->deviceIP = $this->devices[$device]; 
+    } else {
+      $this->deviceIP = $this->devices['front']; 
+    }
+  }
+  public function encrypt($string) {
+    $key = 171;
+    $result = "\0\0\0\0";
+    foreach(str_split($string) as $i) {
+      $a = $key ^ ord($i);
+      $key = $a;
+      $result .= chr($a);
+    }
+    return $result;
+  }
+
+  public function decrypt($string) {
+    $key = 171; 
+    $result = "";
+    foreach(str_split($string) as $i) {
+      $a = $key ^ ord($i);
+      $key = ord($i); 
+      $result .= chr($a);
+    }
+    return $result;
+  }
+
+  public function sendCommand($command, $port = 9999) {
+
+    if ($socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)) {
+
+      $result = socket_connect($socket, $this->deviceIP, $port);
+
+      $message = $this->encrypt($this->commands[$command]);
+      
+      socket_write($socket, $message, strlen($message));
+
+      $buff = '';
+      while ($out = socket_read($socket, 2048)) {
+          $buff .= $out;
+      }
+      socket_close($socket);
+
+      return $this->decrypt( substr($buff, 4) );
+    } else {
+      return false;
+    }
+  }
+
+  public function getStatus($port = 9999) {
+    if ($socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)) {
+
+      $result = socket_connect($socket, $this->deviceIP, $port);
+
+      $message = $this->encrypt($this->commands['info']);
+      
+      socket_write($socket, $message, strlen($message));
+
+      $buff = '';
+      while ($out = socket_read($socket, 2048)) {
+          $buff .= $out;
+      }
+      socket_close($socket);
+
+      $res = $this->decrypt( substr($buff, 4) );
+
+      $json = json_decode($res);
+
+      $state = $json->system->get_sysinfo->relay_state;
+      if ($state == '1') {
+        return 'on';
+      } elseif($state == '0') {
+        return 'off';
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+}
 
 
 $commands = array('on', 'off');
 
-if(!isset($argv[2])) {
-  $device = '1';
+if(!isset($argv[1])) {
+  $device = 'bedroom';
 } else {
-  $device = $argv[2];
+  $device = $argv[1];
 }
 
-if(in_array($argv[1], $commands) ) { 
-  $orv = new Orvibo('10.0.0.82', 10000, array(0xAC,0xCF,0x23,0x99,0x4A,0x84));
-  $orv2 = new Orvibo('10.0.0.236', 10000, array(0x60,0x01,0x94,0x0A,0xA8,0x2D));
 
-  if($device == '1') {
-    switch ($argv[1]) {
+if(in_array($argv[2], $commands) ) { 
+  $orv = new Orvibo('10.0.0.82', 10000, array(0xAC,0xCF,0x23,0x99,0x4A,0x84));
+
+  if($device == 'bedroom') {
+    switch ($argv[2]) {
       case 'on':
         $orv->on();
         break;
@@ -112,19 +219,35 @@ if(in_array($argv[1], $commands) ) {
         # code...
         break;
     }
-  } else {
-    switch ($argv[1]) {
+  }elseif($device == 'front') {
+    switch($argv[2]) {
       case 'on':
-        $orv2->on();
+        $test = new HS100('front');
+        $test->sendCommand('on');
+        unset($test);
         break;
       case 'off':
-        $orv2->off();
+        $test = new HS100('front');
+        $test->sendCommand('off');
+        unset($test);
         break;
-      default:
-        # code...
+    }
+  }elseif($device == 'back') {
+    switch($argv[2]) {
+      case 'on':
+        $test = new HS100('back');
+        $test->sendCommand('on');
+        unset($test);
+        break;
+      case 'off':
+        $test = new HS100('back');
+        $test->sendCommand('off');
+        unset($test);
         break;
     }
   }
+
+
 } else {
-  echo "use like:\n  php orvibo.php {on/off}\n\n";
+  echo "use like:\n  php orvibo.php {on/off} {device name}\n\n";
 }
