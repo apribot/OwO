@@ -205,14 +205,30 @@ if(!isset($argv[1])) {
 
 
 if(in_array($argv[2], $commands) ) { 
-  $orv = new Orvibo('10.0.0.82', 10000, array(0xAC,0xCF,0x23,0x99,0x4A,0x84));
 
   if($device == 'bedroom') {
     switch ($argv[2]) {
       case 'on':
+        $orv = new Orvibo('10.0.0.82', 10000, array(0xAC,0xCF,0x23,0x99,0x4A,0x84));
         $orv->on();
         break;
       case 'off':
+        $orv = new Orvibo('10.0.0.82', 10000, array(0xAC,0xCF,0x23,0x99,0x4A,0x84));
+        $orv->off();
+        break;
+      default:
+        # code...
+        break;
+    }
+  }elseif($device == 'other') {
+    echo "yup";
+    switch ($argv[2]) {
+      case 'on':                                      //  AC:CF:23:51:ED:C2
+        $orv = new Orvibo('10.0.0.225', 10000, array(0xAC,0xCF,0x23,0x51,0xED,0xC2));
+        $orv->on();
+        break;
+      case 'off':
+        $orv = new Orvibo('10.0.0.225', 10000, array(0xAC,0xCF,0x23,0x51,0xED,0xC2));
         $orv->off();
         break;
       default:

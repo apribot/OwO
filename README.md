@@ -29,6 +29,9 @@ apt-get install tshark
 - [ ] accept the eventuality of a real RDMS
 - [ ] yes
 
+### wifi switch controller
+- [ ] really need to refactor, use some kind of settings file/format, getting kinda gross
+
 ### wiwo switch(s)
 - [ ] get status
 - [x] send on/off commands
