@@ -220,7 +220,7 @@ if(in_array($argv[2], $commands) ) {
         # code...
         break;
     }
-  }elseif($device == 'other') {
+  }elseif($device == 'desk') {
     echo "yup";
     switch ($argv[2]) {
       case 'on':                                      //  AC:CF:23:51:ED:C2

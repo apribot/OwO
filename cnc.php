@@ -23,6 +23,14 @@ $routes =  array(
                         'on'=>'on',
                         'off'=>'off'
                 )
+        ),
+
+        'desk'=>array(
+                'file'=>'orvibo.php desk', 
+                'action'=>array(
+                        'on'=>'on',
+                        'off'=>'off'
+                )
         ) 
 );
 

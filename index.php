@@ -1,28 +1,36 @@
 <?php
 /*
 $fp = "
-[  I  ] [  O  ]                                                        
----------------,                                        [  I  ] [  O  ]
-                \                                       ,--------------
-        _________\_________________________   _______  /               
-       |         (+)       |   |                     |/                
-       |                   |   |                     /                 
-       |____               |   |                    /|                 
-       |                   |   |                  (+)|                 
-       |____|  ________   _|   |_    .._________   __|                 
-       |         |              _      |             |                 
-       |_________    __________| |     |             |                 
-       |_________|  |____________|     |             |                 
-       |                 |             |__   ________|                 
-                         |              _    _       |                 
-       |                 |             |_   | |      |                 
-       |                 |             | |  | |      |                 
-       |                 |             | |  | |      |                 
-       |                 |     (+)     | |  | |      |                 
-       |                 |  _____\_____|_|__|_|______|                 
-       |                 |    :   \                     [  I  ] [  O  ]
-       |                 |    :    '-----------------------------------
-       |__.............__|....:                                        ";
+
+         [  1  ]    [  1  ]                                               
+         [  0  ]    [  0  ] 
+        .-------   .-------
+       /          /             [  1  ]                           
+      /          /              [  0  ]
+     /          /               -------.   
+ ___/__________/____________________   _\_____                
+|  /         (+)    |   |                \    |                
+|(+)                |   |                 \   |                 
+|____               |   |                  \  |                 
+|                   |   |                  (+)|                 
+|____|  ________   _|   |_    .._________   __|                 
+|         |              _      |             |                 
+|_________    __________| |     |             |                 
+|_________|  |____________|     |             |                 
+|                 |             |__   ________|                 
+                  |              _    _       |                 
+|                 |             |_   | |      |                 
+|                 |             | |  | |      |                 
+|                 |             | |  | |      |                 
+|                 |     (+)     | |  | |      |                 
+|                 |  _____\_____|_|__|_|______|                 
+|                 |    :   \                     
+|                 |    :    \  [  1  ]
+|__.............__|....:     \ [  0  ]                 
+                              `------- 
+
+
+                   ";
 
 
 $cdef = array(
@@ -36,8 +44,8 @@ $cdef = array(
     );
 
 $strdev = array(
-    '[  I  ]' => array('start'=>'<span class="onbtn action">',  'end'=>'</span>'),
-    '[  O  ]' => array('start'=>'<span class="offbtn action">', 'end'=>'</span>'),
+    '[  1  ]' => array('start'=>'<span class="onbtn action">',  'end'=>'</span>'),
+    '[  0  ]' => array('start'=>'<span class="offbtn action">', 'end'=>'</span>'),
     '(+)'     => array('start'=>'<span class="blue">',   'end'=>'</span>')
     );
 
@@ -55,6 +63,9 @@ $outp = implode('', $chars);
 foreach($strdev as $find => $replace) {
     $outp = str_replace($find, $replace['start'] . $find . $replace['end'] , $outp);
 }
+
+echo '<pre>'. $outp . '</pre>';
+die;
 */
 
 ?>
@@ -181,29 +192,32 @@ foreach($strdev as $find => $replace) {
     </head>
     <body>
 <pre>
-
-<span class="onbtn action" _target="bed" _command="on">[  I  ]</span> <span class="offbtn action" _target="bed" _command="off">[  O  ]</span>                                                        
-<span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">,</span>                                        <span class="onbtn action" _target="back" _command="on">[  I  ]</span> <span class="offbtn action" _target="back" _command="off">[  O  ]</span>
-                <span class="blue">\</span>                                       <span class="blue">,</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span>
-        _________<span class="blue">\</span>_________________________   _______  <span class="blue">/</span>               
-       |         <span class="blue">(+)</span>       |   |                     |<span class="blue">/</span>                
-       |                   |   |                     <span class="blue">/</span>                 
-       |____               |   |                    <span class="blue">/</span>|                 
-       |                   |   |                  <span class="blue">(+)</span>|                 
-       |____|  ________   _|   |_    <span class="gray">.</span><span class="gray">.</span>_________   __|                 
-       |         |              _      |             |                 
-       |_________    __________| |     |             |                 
-       |_________|  |____________|     |             |                 
-       |                 |             |__   ________|                 
-                         |              _    _       |                 
-       |                 |             |_   | |      |                 
-       |                 |             | |  | |      |                 
-       |                 |             | |  | |      |                 
-       |                 |     <span class="blue">(+)</span>     | |  | |      |                 
-       |                 |  _____<span class="blue">\</span>_____|_|__|_|______|                 
-       |                 |    <span class="gray">:</span>   <span class="blue">\</span>                     <span class="onbtn action" _target="front" _command="on">[  I  ]</span> <span class="offbtn action" _target="front" _command="off">[  O  ]</span>
-       |                 |    <span class="gray">:</span>    <span class="blue">'</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span>
-       |__<span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span>__|<span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">:</span>                                        
+         <span  _target="desk" _command="on" class="onbtn action">[  1  ]</span>    <span _target="bed" _command="on" class="onbtn action">[  1  ]</span>                                               
+         <span  _target="desk" _command="off" class="offbtn action">[  0  ]</span>    <span _target="bed" _command="off" class="offbtn action">[  0  ]</span> 
+        <span class="gray">.</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span>   <span class="gray">.</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span>
+       <span class="blue">/</span>          <span class="blue">/</span>             <span _target="back" _command="on" class="onbtn action">[  1  ]</span>                           
+      <span class="blue">/</span>          <span class="blue">/</span>              <span _target="back" _command="off" class="offbtn action">[  0  ]</span>
+     <span class="blue">/</span>          <span class="blue">/</span>               <span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="gray">.</span>   
+ ___<span class="blue">/</span>__________<span class="blue">/</span>____________________   _<span class="blue">\</span>_____                
+|  <span class="blue">/</span>         <span class="blue">(+)</span>    |   |                <span class="blue">\</span>    |                
+|<span class="blue">(+)</span>                |   |                 <span class="blue">\</span>   |                 
+|____               |   |                  <span class="blue">\</span>  |                 
+|                   |   |                  <span class="blue">(+)</span>|                 
+|____|  ________   _|   |_    <span class="gray">.</span><span class="gray">.</span>_________   __|                 
+|         |              _      |             |                 
+|_________    __________| |     |             |                 
+|_________|  |____________|     |             |                 
+|                 |             |__   ________|                 
+                  |              _    _       |                 
+|                 |             |_   | |      |                 
+|                 |             | |  | |      |                 
+|                 |             | |  | |      |                 
+|                 |     <span class="blue">(+)</span>     | |  | |      |                 
+|                 |  _____<span class="blue">\</span>_____|_|__|_|______|                 
+|                 |    <span class="gray">:</span>   <span class="blue">\</span>                     
+|                 |    <span class="gray">:</span>    <span class="blue">\</span>  <span _target="front" _command="on" class="onbtn action">[  1  ]</span>
+|__<span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span>__|<span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">.</span><span class="gray">:</span>     <span class="blue">\</span> <span _target="front" _command="off" class="offbtn action">[  0  ]</span>                 
+                              `<span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span> 
 
 </pre>        
   <pre id="status"></pre>
