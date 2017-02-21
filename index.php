@@ -191,7 +191,11 @@ die;
         </style>
     </head>
     <body>
+
 <pre>
+
+
+
          <span  _target="desk" _command="on" class="onbtn action">[  1  ]</span>    <span _target="bed" _command="on" class="onbtn action">[  1  ]</span>                                               
          <span  _target="desk" _command="off" class="offbtn action">[  0  ]</span>    <span _target="bed" _command="off" class="offbtn action">[  0  ]</span> 
         <span class="gray">.</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span>   <span class="gray">.</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span><span class="blue">-</span>
