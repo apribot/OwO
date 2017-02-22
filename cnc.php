@@ -49,3 +49,4 @@ if(!isset($routes[$target]) || !isset($routes[$target]['action'][$action]) ) {
 }
 
 exec( '/usr/bin/php ' . $utilbase . $routes[$target]['file'] . ' ' . $routes[$target]['action'][$action]);
+echo "$target: $action";
