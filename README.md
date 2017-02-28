@@ -8,6 +8,9 @@ apt-get install tshark
 
 ## microservice todo
 
+### device ip discovery
+- [ ] the dang hs100's appear to grab a low/random ip on powersurge. broke half the system. need ip disco on MAC
+
 ### ipcam
 - [ ] get/set audio alarm attribs
 - [ ] get/set audio alarm on/of
