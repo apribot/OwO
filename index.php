@@ -193,7 +193,9 @@ die;
     <body>
 
 <pre>
-
+ ALL
+<span  _target="all" _command="on" class="onbtn action">[  1  ]</span>   
+<span  _target="all" _command="off" class="offbtn action">[  0  ]</span> 
 
 
          <span  _target="desk" _command="on" class="onbtn action">[  1  ]</span>    <span _target="bed" _command="on" class="onbtn action">[  1  ]</span>                                               
